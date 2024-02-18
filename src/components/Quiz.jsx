@@ -9,7 +9,7 @@ import Error from "./Error";
 export default function Quiz() {
   const { activeQuestionIndex, category } = useQuiz();
   const { isError, isLoading, data } = useQuery(
-    ["questions", category],
+    ["questions", category.value],
     fetchQuestions
   );
 
@@ -17,7 +17,7 @@ export default function Quiz() {
   if (isError) return <Error />;
   if (data && activeQuestionIndex === data.results.length) return <Complete />;
   return (
-    <div className="w-full h-full flex gap-x-8 gap-y-10 ml-0 flex-wrap items-center justify-center">
+    <div>
       {data && <Questions questions={data.results} />}
     </div>
   );

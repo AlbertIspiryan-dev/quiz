@@ -28,7 +28,7 @@ export default function Questions({ questions }) {
   return (
     <>
       <Question question={activeQuestion} activeIndex={activeQuestionIndex} />
-      <div className="w-full h-full flex gap-x-8 gap-y-10 ml-0 flex-wrap items-center justify-center">
+      <div className={`grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-${activeQuestionAnswers.length} xl:auto-cols-auto gap-6 mt-20`}>
         {shuffleArray(activeQuestionAnswers).map((answer) => (
           <Answer
             key={answer}

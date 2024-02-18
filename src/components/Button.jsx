@@ -1,8 +1,11 @@
-export default function Button({ children, ...props }) {
+export default function Button({ children, disabled, ...props }) {
+  const classes = !disabled ? 'bg-primary text-white hover:bg-primary-dark' : 'bg-neutral-50 text-gray-400 cursor-not-allowed'
+  
   return (
     <button
       {...props}
-      className="mt-4 w-full inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      type="button"
+      className={`px-5 py-4 font-semibold rounded-lg cursor-pointer ${classes}`}
     >
       {children}
     </button>

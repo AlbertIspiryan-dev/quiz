@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { getTruthyCount } from "../utility/helpers.js";
 import { useQuiz } from "../store/quiz-context.jsx";
 import useLocalStorage from "../hooks/useStorage";
@@ -7,21 +8,27 @@ import Button from "./Button.jsx";
 import Title from "./Title.jsx";
 
 export default function Header() {
-  const { answers, resetState } = useQuiz();
+  const { answers, category, resetState } = useQuiz();
   const [quizzes, setQuizzes] = useLocalStorage("quizzes", []);
 
   useEffect(() => {
-    setQuizzes([answers, ...quizzes]);
+    const quizzeObject = {
+      id: uuidv4(),
+      categoryName: category.text,
+      answers
+    } 
+    
+    setQuizzes([quizzeObject, ...quizzes]);
   }, []);
 
   return (
-    <div className="w-full h-full flex gap-x-8 gap-y-10 ml-0 flex-wrap items-center justify-center">
-      <Title>Thanks you</Title>
-      <Paragraph>
-        Your score is {getTruthyCount(answers, "isCorrect")} / {answers.length}
-      </Paragraph>
-
+    <div>
+      <Title classes="mb-36">Thanks you</Title>
       <div>
+        <Paragraph classes="mb-20">
+          Your score: {getTruthyCount(answers, "isCorrect")} / {answers.length}
+        </Paragraph>
+
         <Button onClick={resetState}>Back to Home</Button>
       </div>
     </div>

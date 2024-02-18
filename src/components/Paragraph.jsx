@@ -1,3 +1,7 @@
-export default function Paragraph({ children, ...props }) {
-  return <p {...props}>{children}</p>;
+export default function Paragraph({ children, classes }) {
+  return (
+    <p className={`text-3xl font-bold text-slate-900 ${classes}`}>
+      {children}
+    </p>
+  );
 }

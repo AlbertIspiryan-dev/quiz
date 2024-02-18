@@ -6,10 +6,6 @@ export const actions = {
 };
 export const categories = [
   {
-    value: "",
-    text: "Category",
-  },
-  {
     value: "27",
     text: "Animals",
   },
